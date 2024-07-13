@@ -8,6 +8,7 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+	
 )
 
 type Configurations struct {
@@ -64,7 +65,7 @@ func ToWei(amount *big.Float) *big.Int {
 	return wei
 }
 
-func Transaction (fromPublicAddress common.Address, fromPrivateAddress *ecdsa.PrivateKey, toPublicAddress common.Address, amount *big.Float) {
+func SendEthers (fromPublicAddress common.Address, fromPrivateAddress *ecdsa.PrivateKey, toPublicAddress common.Address, amount *big.Float) {
 	weiAmount := ToWei(amount)
 	config := TransferConfig(fromPublicAddress)
 	tx := types.NewTransaction(config.Nonce, toPublicAddress, weiAmount, config.GasLimit, config.GasPrice,nil)
