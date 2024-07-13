@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"tap2crypto-backend/walletFunctions"
+	"tap2crypto-backend/walletTransactions"
 )
 
 func main() {

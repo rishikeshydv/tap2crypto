@@ -20,6 +20,7 @@ require (
 	github.com/holiman/uint256 v1.3.0 // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect
 	github.com/shirou/gopsutil v3.21.11+incompatible // indirect
+	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/supranational/blst v0.3.12 // indirect
 	github.com/tklauser/go-sysconf v0.3.14 // indirect
 	github.com/tklauser/numcpus v0.8.0 // indirect
