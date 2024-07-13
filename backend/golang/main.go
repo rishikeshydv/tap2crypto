@@ -31,8 +31,24 @@ func createWallet() (common.Address, *ecdsa.PrivateKey) {
 	publicAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
 	return publicAddress, generatedPrivKey
 }
+
+func importWallet(privateKey string)(common.Address, *ecdsa.PrivateKey){
+	importedPrivateKey, err := crypto.HexToECDSA(privateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+	publicKey := importedPrivateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		log.Fatal("error casting public key to ECDSA")
+	}
+	publicAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	return publicAddress, importedPrivateKey
+}
 func main() {
+	//here we can either create a new wallet or import an existing wallet
 	publicKey, privateKey := createWallet()
+	//publicKey, privateKey := importWallet()
 	fmt.Println("Public Address: ", publicKey)
 	fmt.Println("Private Key: ", privateKey)
 }
