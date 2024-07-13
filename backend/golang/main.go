@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"math/big"
+	"tap2crypto-backend/optionsFunctions"
 	"tap2crypto-backend/walletFunctions"
 	"tap2crypto-backend/walletTransactions"
-	"github.com/ethereum/go-ethereum/crypto"
+
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 )
 
-
-func main() {
+func walletFunc() {
 	//initialize the network
 	walletFunctions.InitNetwork("https://cloudflare-eth.com")
 	walletTransactions.InitNetwork("https://cloudflare-eth.com")
@@ -28,7 +29,7 @@ func main() {
 	//config transactions
 	var config walletTransactions.Configurations
 	fromPublicKey := common.HexToAddress("0x3aA2263480c9d84D4BF5fa8831De88200be898BE")
-	fromPrivateKey,err := crypto.HexToECDSA("47010d969c59e1e2ea43a9d2977df71b2c856909a1988164dc2f589578837cca")
+	fromPrivateKey, err := crypto.HexToECDSA("47010d969c59e1e2ea43a9d2977df71b2c856909a1988164dc2f589578837cca")
 	if err != nil {
 		fmt.Println("Error: ", err)
 	}
@@ -41,5 +42,15 @@ func main() {
 
 	//send the ethers
 	walletTransactions.SendEthers(fromPublicKey, fromPrivateKey, toPublicKey, big.NewFloat(0.1))
+}
+
+func optionsFunc() {
+	//betting functions
+	bettingFunctions.Bet()
+}
+func main() {
+
+	//walletFunc()
+	optionsFunc()
 
 }
