@@ -1,4 +1,4 @@
-[![IMAGE ALT TEXT HERE](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZX-o6g7HyqiWKqtg1B2KGUUVS8P1dYW0jQ&s)](https://youtu.be/S6pFI4uNJcQ)
+[![IMAGE ALT TEXT HERE](https://tuberanker.com/storage/images/data/can-i-use-someone-elses-video-on-my-youtube-channel.png)](https://youtu.be/S6pFI4uNJcQ)
 
 # Tap2Crypto
 
