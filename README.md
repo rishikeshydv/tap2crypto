@@ -1,3 +1,5 @@
+[![Watch the video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://youtu.be/S6pFI4uNJcQ)
+
 # Tap2Crypto
 
 Tap2Crypto is a cutting-edge project that combines the power of Natural Language Processing, Deep Learning, and blockchain technology to provide a secure and user-friendly crypto wallet with advanced investment insights and payment functionalities.
