@@ -56,7 +56,7 @@ Tap2Crypto is designed to facilitate seamless scan-to-pay and tap-to-pay transac
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/tap2crypto.git
+   git clone https://github.com/rishikeshydv/tap2crypto.git
    cd tap2crypto
    ```
 
@@ -65,47 +65,27 @@ Tap2Crypto is designed to facilitate seamless scan-to-pay and tap-to-pay transac
    - Backend (Golang):
      ```sh
      cd backend
+     cd golang
      go mod download
      ```
 
    - Frontend (ViteJS):
      ```sh
      cd frontend
+     cd tap2crypto
      npm install
      ```
 
    - Machine Learning models (Python):
      ```sh
-     cd ml-models
+     cd backend
+     cd golang
+     cd ai
      pip install -r requirements.txt
      ```
-
-3. Build Docker images and push to AWS ECR:
-   ```sh
-   # Authenticate Docker to your AWS ECR
-   aws ecr get-login-password --region your-region | docker login --username AWS --password-stdin your-account-id.dkr.ecr.your-region.amazonaws.com
-
-   # Build and push backend image
-   cd backend
-   docker build -t tap2crypto-backend .
-   docker tag tap2crypto-backend:latest your-account-id.dkr.ecr.your-region.amazonaws.com/tap2crypto-backend:latest
-   docker push your-account-id.dkr.ecr.your-region.amazonaws.com/tap2crypto-backend:latest
-
-   # Build and push frontend image
-   cd ../frontend
-   docker build -t tap2crypto-frontend .
-   docker tag tap2crypto-frontend:latest your-account-id.dkr.ecr.your-region.amazonaws.com/tap2crypto-frontend:latest
-   docker push your-account-id.dkr.ecr.your-region.amazonaws.com/tap2crypto-frontend:latest
-   ```
-
-4. Deploy to AWS ECS:
-   ```sh
-   # Create ECS cluster and services using AWS CLI or AWS Management Console
-   ```
-
 ## Usage
 
-1. Access the Tap2Crypto frontend via your deployed URL.
+1. Access the Tap2Crypto via localhost.
 2. Register an account and log in.
 3. Use the scan-to-pay or tap-to-pay functionality for crypto transactions.
 4. View investment insights and automated trading recommendations based on sentiment analysis.
