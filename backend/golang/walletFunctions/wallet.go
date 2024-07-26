@@ -7,6 +7,7 @@ import (
 	"math/big"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/ethclient"
 
 	//"github.com/ethereum/go-ethereum/common/hexutil"
@@ -25,17 +26,17 @@ func InitNetwork(networkRPC string) {
 	log.Println("Connected to the network")
 }
 
-func CreateWallet() (common.Address, *ecdsa.PrivateKey) {
+func CreateWallet() (common.Address, string) {
 	generatedPrivKey, err := crypto.GenerateKey()
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//get the private key
-	//privatekeyBytes := crypto.FromECDSA(generatedPrivKey)
-	//log.Print("Private Key Bytes: ", privatekeyBytes)
-	//privateKey := hexutil.Encode(privatekeyBytes)[2:]
-	//log.Print("Private Key: ", privateKey)
+	privatekeyBytes := crypto.FromECDSA(generatedPrivKey)
+	log.Print("Private Key Bytes: ", privatekeyBytes)
+	privateKey := hexutil.Encode(privatekeyBytes)[2:]
+	log.Print("Private Key: ", privateKey)
 
 	//get the public key
 	publicKey := generatedPrivKey.Public()
@@ -44,7 +45,7 @@ func CreateWallet() (common.Address, *ecdsa.PrivateKey) {
 		log.Fatal("error casting public key to ECDSA")
 	}
 	publicAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
-	return publicAddress, generatedPrivKey
+	return publicAddress, privateKey
 }
 
 func ImportWallet(privateKey string) (common.Address, *ecdsa.PrivateKey) {

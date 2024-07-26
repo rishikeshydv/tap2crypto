@@ -6,6 +6,12 @@ import numpy as np
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/api/vi/get-news",methods=['GET'])
+def get_news():
+    headline = Headline()
+    news = headline.return_headlines()
+    return jsonify(news)
+
 @app.route('/api/v1/get-companies',methods=['GET'])
 def get_companies():
     headline = Headline()
@@ -15,7 +21,7 @@ def get_companies():
     headline.return_entities()
     res_dict = headline.return_only_companies()
     # Convert int64 to int
-    res_dict = {k: int(v) if isinstance(v, np.int64) else v for k, v in res_dict.items()}
+    #res_dict = {k: int(v) if isinstance(v, np.int64) else v for k, v in res_dict.items()}
     return jsonify(res_dict)
 
 if __name__ == '__main__':

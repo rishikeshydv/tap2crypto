@@ -2,22 +2,23 @@
 from bs4 import BeautifulSoup
 import requests
 import spacy
-import joblib
+#import joblib
 from openai import OpenAI
 import numpy as np
 import pandas as pd
-
+import pickle
 class Headline:
 
     def __init__(self):
         self.headlines = []
         self.preprocessed_headlines = []
-        self.loaded_knn_model = joblib.load('knn_model.pkl')
+        #self.loaded_knn_model = joblib.load('knn_model.pkl')
+        self.loaded_knn_model = pickle.load(open('backend/golang/ai/knn_model.pkl', 'rb'))
         self.predictions_knn = []
         self.knn_res = {}
         self.new_knn_res = {}
         self.nlp = spacy.load('en_core_web_sm')
-        self.client = OpenAI(api_key="your-api-key")
+        self.client = OpenAI(api_key="sk-None-Qjfap14kDqSsywo3VRJnT3BlbkFJBA9uwGJbjgAPRSulATXr")
 
     def return_headlines(self):
         #retrieve the content of the website
@@ -29,6 +30,7 @@ class Headline:
         self.headlines = soup.find_all('div', class_='hero-headlines hero-second-col yf-13r5oof')
         self.headlines = self.headlines[0].find_all('h3')
         self.headlines = [headline.text for headline in self.headlines]
+        return self.headlines
 
     def create_embedding(self,text):
         response = self.client.embeddings.create(
@@ -57,7 +59,7 @@ class Headline:
         return self.knn_res
     
     def return_only_companies(self):
-        df_sp500 = pd.read_csv('sp500.csv')
+        df_sp500 = pd.read_csv('backend/golang/ai/sp500.csv')
         df_sp500.head()
         #using only Symbol and Security
         df_sp500 = df_sp500[['Symbol', 'Security']]
@@ -67,13 +69,13 @@ class Headline:
         for entity, sentiment in self.knn_res.items():
             for i, row in df_sp500.iterrows():
                 if entity in row.Security:
-                    self.new_knn_res[row.Symbol] = sentiment
+                    self.new_knn_res[row.Symbol] = "High" if sentiment == 1 else "Low"
 
         return self.new_knn_res
     
 #instanticate the class
 headline = Headline()
-headline.return_headlines()
+print(headline.return_headlines())
 headline.preprocess()
 headline.predict()
 headline.return_entities()
