@@ -18,7 +18,7 @@ class Headline:
         self.knn_res = {}
         self.new_knn_res = {}
         self.nlp = spacy.load('en_core_web_sm')
-        self.client = OpenAI(api_key="sk-None-Qjfap14kDqSsywo3VRJnT3BlbkFJBA9uwGJbjgAPRSulATXr")
+        self.client = OpenAI(api_key="your-api-key")
 
     def return_headlines(self):
         #retrieve the content of the website

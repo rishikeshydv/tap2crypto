@@ -1,4 +1,5 @@
 import React from "react";
+import Options from "./options";
 const LoggerStocks = ({ LoggerStatements }: { LoggerStatements: any }) => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-zinc-100">
@@ -16,6 +17,12 @@ const LoggerStocks = ({ LoggerStatements }: { LoggerStatements: any }) => {
           ))
         }
         </div>
+        {
+          LoggerStatements ?
+          <Options /> :
+          null
+        }
+        
       </main>
     </div>
   )
