@@ -9,6 +9,8 @@ import { FaWallet } from "react-icons/fa";
 import { MdImportExport } from "react-icons/md";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+
+
 export default function Home() {
   //retrieve the scraped stocks from the backend
   const [scrapedNews, setScrapedNews] = useState<string[]>([]);
@@ -19,6 +21,9 @@ export default function Home() {
   const [walletCreation, setWalletCreation] = useState<boolean>(false);
   const [showImportWallet, setShowImportWallet] = useState<boolean>(false);
   const [importPrivateKey, setImportPrivateKey] = useState<string>("");
+
+
+
    async function getNews() {
     await axios.get("http://localhost:8080/api/vi/get-news")
     .then((response) => {
@@ -106,6 +111,9 @@ export default function Home() {
       {
         walletCreation ? <KeyTable publicKey={publicKey} privateKey={privateKey}/> : null
       }
+            <div>
+        Enter Amount: <input type="text"/>
+      </div>
   <div>
     <div>
     <button onClick={()=>{

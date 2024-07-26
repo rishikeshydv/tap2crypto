@@ -6,10 +6,13 @@ import { BiSolidHide } from "react-icons/bi";
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useToast } from "@/components/ui/use-toast"
+import PopUp from "./popup";
+
 const KeyTable = ({publicKey,privateKey}:{publicKey:string,privateKey:string}) => {
   const [balance, setBalance] = useState<string>("");
   const [eth, setEth] = useState<string>("");
-
+  const { toast } = useToast()
   async function checkBalance() {
     await axios.post("http://localhost:9000/api/v1/get-balance",{
       publicKey: publicKey
@@ -65,6 +68,12 @@ const KeyTable = ({publicKey,privateKey}:{publicKey:string,privateKey:string}) =
           <p>Balance: {balance}</p>
           <p>Eth Value: {eth}</p>
           </div>
+          <div>
+            Enter ETH: <input type="text"/>
+
+          <PopUp/>
+          </div>
+
           
         </Table>
       </CardContent>
